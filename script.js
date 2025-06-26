@@ -1,4 +1,3 @@
-// Mobile Navigation Toggle
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
@@ -7,13 +6,13 @@ hamburger.addEventListener('click', () => {
     navMenu.classList.toggle('active');
 });
 
-// Close mobile menu when clicking on a link
+
 document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
     hamburger.classList.remove('active');
     navMenu.classList.remove('active');
 }));
 
-// Navbar background change on scroll
+
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 100) {
@@ -25,7 +24,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Smooth scrolling for navigation links
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -39,19 +38,27 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Active navigation link highlighting
+
 window.addEventListener('scroll', () => {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
     
     let current = '';
+    const scrollPosition = window.scrollY + window.innerHeight / 2;
+    
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
-        if (window.scrollY >= (sectionTop - 200)) {
+        const sectionBottom = sectionTop + sectionHeight;
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
             current = section.getAttribute('id');
         }
     });
+
+    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 100) {
+        current = 'contact';
+    }
 
     navLinks.forEach(link => {
         link.classList.remove('active');
@@ -61,7 +68,7 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Intersection Observer for animations
+
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -76,7 +83,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe elements for animation
+
 document.addEventListener('DOMContentLoaded', () => {
     const animatedElements = document.querySelectorAll('.project-card, .skill-item, .stat');
     
@@ -88,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Typing effect for hero title
+
 function typeWriter(element, text, speed = 100) {
     let i = 0;
     element.innerHTML = '';
@@ -104,16 +111,21 @@ function typeWriter(element, text, speed = 100) {
     type();
 }
 
-// Initialize typing effect when page loads
+
 document.addEventListener('DOMContentLoaded', () => {
     const heroTitle = document.querySelector('.hero-title');
     if (heroTitle) {
         const originalText = heroTitle.textContent;
         typeWriter(heroTitle, originalText, 50);
     }
+    
+    const homeLink = document.querySelector('a[href="#home"]');
+    if (homeLink) {
+        homeLink.classList.add('active');
+    }
 });
 
-// Project card hover effects
+
 document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('mouseenter', function() {
         this.style.transform = 'translateY(-10px) scale(1.02)';
@@ -124,7 +136,7 @@ document.querySelectorAll('.project-card').forEach(card => {
     });
 });
 
-// Skill item hover effects
+
 document.querySelectorAll('.skill-item').forEach(item => {
     item.addEventListener('mouseenter', function() {
         this.style.transform = 'translateY(-5px) scale(1.05)';
@@ -135,7 +147,7 @@ document.querySelectorAll('.skill-item').forEach(item => {
     });
 });
 
-// Add loading animation
+
 window.addEventListener('load', () => {
     document.body.style.opacity = '0';
     document.body.style.transition = 'opacity 0.5s ease';
@@ -145,7 +157,7 @@ window.addEventListener('load', () => {
     }, 100);
 });
 
-// Scroll to top functionality
+
 const scrollToTopBtn = document.createElement('button');
 scrollToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
 scrollToTopBtn.className = 'scroll-to-top';
@@ -169,7 +181,7 @@ scrollToTopBtn.style.cssText = `
 
 document.body.appendChild(scrollToTopBtn);
 
-// Show/hide scroll to top button
+
 window.addEventListener('scroll', () => {
     if (window.scrollY > 300) {
         scrollToTopBtn.style.opacity = '1';
@@ -180,7 +192,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Scroll to top functionality
+
 scrollToTopBtn.addEventListener('click', () => {
     window.scrollTo({
         top: 0,
@@ -188,7 +200,7 @@ scrollToTopBtn.addEventListener('click', () => {
     });
 });
 
-// Add hover effect to scroll to top button
+
 scrollToTopBtn.addEventListener('mouseenter', () => {
     scrollToTopBtn.style.background = '#1d4ed8';
     scrollToTopBtn.style.transform = 'scale(1.1)';
@@ -199,7 +211,7 @@ scrollToTopBtn.addEventListener('mouseleave', () => {
     scrollToTopBtn.style.transform = 'scale(1)';
 });
 
-// Parallax effect for hero section
+
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero');
@@ -209,11 +221,11 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Add CSS for active navigation link
+
 const style = document.createElement('style');
 style.textContent = `
     .nav-link.active {
-        color: #2563eb !important;
+        color: #ea6a66 !important;
     }
     
     .nav-link.active::after {
